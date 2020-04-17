@@ -19,7 +19,7 @@
         <v-card class="mx-auto" max-width="600">
           <v-list shaped>
             <v-list-item-group v-model="model" multiple>
-              <template v-for="(item, i) in items">
+              <template v-for="(item, i) in todos">
                 <v-divider v-if="!item" :key="`divider-${i}`"></v-divider>
 
                 <v-list-item
@@ -28,17 +28,23 @@
                   :value="item"
                   active-class="deep-purple--text text--accent-4"
                 >
-                  <template v-slot:default="{ active, toggle }">
+                  <template>
                     <v-list-item-content>
-                      <v-list-item-title v-text="item"></v-list-item-title>
+                      <v-list-item-title
+                        v-text="item.title"
+                        v-bind:class="{ 'done-item': item.completed}"
+                      ></v-list-item-title>
                     </v-list-item-content>
 
                     <v-list-item-action>
+                      <v-btn color="primary" @click="deleteTodo(item)">Delete</v-btn>
+                    </v-list-item-action>
+
+                    <v-list-item-action>
                       <v-checkbox
-                        :input-value="active"
-                        :true-value="item"
+                        :input-value="item.completed"
                         color="deep-purple accent-4"
-                        @click="toggle"
+                        @click.prevent="toggleItem(item)"
                       ></v-checkbox>
                     </v-list-item-action>
                   </template>
@@ -62,10 +68,35 @@ export default {
   },
   methods: {
     addTodo() {
-      if (this.newTodo != '') {
-        this.items.push(this.newTodo)
+      const todo = {
+        id: '',
+        title: this.newTodo,
+        completed: false
       }
+      if (!todo.title == '') {
+        console.log(todo)
+        this.$store.dispatch('addTodo', todo)
+      } else {
+        alert('Please write your new ToDo!')
+      }
+    },
+    deleteTodo(todo) {
+      //console.log(this.todo)
+      this.$store.dispatch('deleteTodo', todo)
+    },
+    toggleItem(todo) {
+      this.$store.dispatch('completeTodo', todo)
+    }
+  },
+  computed: {
+    todos() {
+      return this.$store.getters.todos
     }
   }
 }
 </script>
+<style scoped>
+.done-item {
+  text-decoration: line-through;
+}
+</style>
