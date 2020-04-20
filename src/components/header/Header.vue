@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app-bar color="dark" dense dark>
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click.stop="showDrawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title>Page title</v-toolbar-title>
 
@@ -46,3 +46,14 @@
     </v-app-bar>
   </div>
 </template>
+<script>
+import EventBus from '../../utils/event-bus'
+export default {
+  methods: {
+    showDrawer() {
+      EventBus.showDrawer()
+      //EventBus.toggleNavigation()
+    }
+  }
+}
+</script>
