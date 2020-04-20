@@ -29,9 +29,9 @@
 <script>
 import EventBus from '../../utils/event-bus'
 export default {
-  props: ['drawer'],
   data() {
     return {
+      drawer: false,
       items: [
         { title: 'Home', icon: 'dashboard' },
         { title: 'About', icon: 'question_answer' }
@@ -39,25 +39,19 @@ export default {
     }
   },
   created() {
-    /*EventBus.$on('showDrawer', () => {
+    this.$store.dispatch('initTodos')
+    EventBus.$on('showDrawer', () => {
+      this.drawer = true
       console.log(this.drawer)
-      console.log('-')
-      //console.log(drawerState)
-      if (this.drawer == undefined || this.drawer == false) {
+    })
+    EventBus.$on('toggleNavigation', () => {
+      if (this.drawer == undefined) {
         this.drawer = true
       } else {
-        this.drawer = false
+        this.drawer = !this.drawer
       }
-      //      this.drawer = !this.drawer
       console.log(this.drawer)
-    })*/
-  },
-  computed: {
-    isOpen: {
-      get() {
-        return this.drawer
-      }
-    }
+    })
   },
   methods: {
     toggleNavigation(e) {
