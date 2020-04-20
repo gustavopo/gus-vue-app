@@ -44,7 +44,7 @@
                       <v-checkbox
                         :input-value="item.completed"
                         color="deep-purple accent-4"
-                        @click.prevent="toggleItem(item)"
+                        @click="toggleItem(item)"
                       ></v-checkbox>
                     </v-list-item-action>
                   </template>
@@ -62,7 +62,7 @@ export default {
   data() {
     return {
       newTodo: '',
-      items: ['Dog Photos', 'Cat Photos', '', 'Potatoes', 'Carrots'],
+      items: ['Dog Photos', 'Cat Photos', 'Da Da', 'Potatoes', 'Carrots'],
       model: ['Carrots']
     }
   },
@@ -85,6 +85,7 @@ export default {
       this.$store.dispatch('deleteTodo', todo)
     },
     toggleItem(todo) {
+      console.log(todo)
       this.$store.dispatch('completeTodo', todo)
     }
   },
