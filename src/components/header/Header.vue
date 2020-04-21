@@ -18,6 +18,10 @@
         <v-btn color="indigo">Perfil</v-btn>
       </router-link>
 
+      <router-link to="/signin">
+        <v-btn color="indigo">Login</v-btn>
+      </router-link>
+
       <router-link to="/signup">
         <v-btn color="indigo">Signup</v-btn>
       </router-link>

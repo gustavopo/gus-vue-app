@@ -44,7 +44,6 @@
 </template>
 
 <script>
-import axios from '../../utils/axios-auth'
 export default {
   data() {
     return {
@@ -77,19 +76,11 @@ export default {
         //terms: this.terms
       }
       console.log(formData)
-      axios
-        .post('/accounts:signUp?key=AIzaSyBuNcXIsSB8G1oVeaixLHEQfzGlb54EKoA', {
-          email: formData.email,
-          password: formData.password,
-          returnSecureToken: true
-        })
-        .then(result => {
-          console.log(result)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-      //this.$store.dispatch('signup', formData)
+      this.$store.dispatch('signup', formData)
+      /*    this.$store.dispatch('signup', {
+        email: formData.email,
+        password: formData.password
+      })*/
     }
   }
 }

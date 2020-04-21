@@ -5,7 +5,8 @@ import Home from '../views/Home.vue'
 import Todo from '../components/todo/Todo.vue'
 import UserDetails from '../components/user/UserDetails.vue'
 import TestComponent from '../components/test/TestComponent.vue'
-import SignupComponent from '../components/signup/SignupComponent.vue'
+import SignupComponent from '../components/authentication/SignupComponent.vue'
+import SigninComponent from '../components/authentication/Signin.vue'
 
 Vue.use(VueRouter)
 
@@ -43,6 +44,11 @@ const routes = [
     path: '/signup',
     name: 'signup',
     component: SignupComponent
+  },
+  {
+    path: '/signin',
+    name: 'signin',
+    component: SigninComponent
   },
   {
     path: '/redirecttest',
