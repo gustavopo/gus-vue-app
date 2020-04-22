@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app-bar color="dark" dense dark>
-      <v-app-bar-nav-icon @click.stop="showDrawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon v-if="auth" @click.stop="showDrawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title>Page title</v-toolbar-title>
 

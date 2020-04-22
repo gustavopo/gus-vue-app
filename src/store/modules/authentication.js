@@ -83,7 +83,7 @@ const actions = {
       .then(res => console.log(res))
       .catch(err => console.log(err))
   },
-  //Fetch User Data
+  //Fetch User
   fetchUser({ commit, state }) {
     globalAxios
       .get('/users.json' + '?auth=' + state.idToken)
@@ -96,8 +96,44 @@ const actions = {
           users.push(user)
         }
 
-        //TODO: Change this user for scale up
-        commit('storeUser', users[0])
+        // dispatch('fetchUserEmailByIdToken').then(response => {
+        //   console.log('fetchUserEmailByIdToken response')
+        //   setTimeout(() => {
+        //     console.log('response')
+        //     console.log(response)
+        //   }, 2000)
+
+        //   console.log('dentro')
+        // })
+        axios
+          .post(
+            '/accounts:lookup?key=AIzaSyBuNcXIsSB8G1oVeaixLHEQfzGlb54EKoA',
+            {
+              idToken: state.idToken
+            }
+          )
+          .then(response => {
+            //1 - Get User
+            var retrievedUser = response.data.users[0]
+            //2 - Find user by email
+            var findUser = users.find(usr => usr.email === retrievedUser.email)
+            commit('storeUser', findUser)
+          })
+      })
+      .catch(error => console.log(error))
+  },
+
+  //Not Used
+  //Extract upside Promise to this Action
+  fetchUserEmailByIdToken({ state }) {
+    axios
+      .post('/accounts:lookup?key=AIzaSyBuNcXIsSB8G1oVeaixLHEQfzGlb54EKoA', {
+        idToken: state.idToken
+      })
+      .then(response => {
+        console.log(response)
+        var userEmail = response.data.users[0]
+        return userEmail
       })
       .catch(error => console.log(error))
   }
