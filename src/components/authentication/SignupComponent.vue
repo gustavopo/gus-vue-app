@@ -1,32 +1,33 @@
 <template>
-  <v-container>
-    <v-row>
-      <v-col>
-        <h1>Signup</h1>
-        <v-form @submit.prevent="onSubmit">
-          <v-text-field label="Email" type="email" v-model="email" id="email"></v-text-field>
-          <v-text-field
-            v-model="password"
-            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-            :type="show1 ? 'text' : 'password'"
-            name="input-10-1"
-            label="Normal with hint text"
-            hint="At least 8 characters"
-            counter
-            @click:append="show1 = !show1"
-          ></v-text-field>
+  <v-card class="mx-auto" max-width="800">
+    <v-container>
+      <v-row>
+        <v-col>
+          <h1>Signup</h1>
+          <v-form @submit.prevent="onSubmit">
+            <v-text-field label="Email" type="email" v-model="email" id="email"></v-text-field>
+            <v-text-field
+              v-model="password"
+              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+              :type="show1 ? 'text' : 'password'"
+              name="input-10-1"
+              label="Password"
+              hint="At least 8 characters"
+              counter
+              @click:append="show1 = !show1"
+            ></v-text-field>
 
-          <v-text-field
-            v-model="confirmPassword"
-            :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
-            :type="show2 ? 'text' : 'password'"
-            name="input-10-1"
-            label="Normal with hint text"
-            hint="Should be the same as the Password"
-            counter
-            @click:append="show2 = !show2"
-          ></v-text-field>
-          <!--
+            <v-text-field
+              v-model="confirmPassword"
+              :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+              :type="show2 ? 'text' : 'password'"
+              name="input-10-1"
+              label="Confirm Password"
+              hint="Should be the same as the Password"
+              counter
+              @click:append="show2 = !show2"
+            ></v-text-field>
+            <!--
           <v-autocomplete
             label="Which browser do you use?"
             :items="browsersList"
@@ -35,12 +36,13 @@
           <v-file-input label="Attach profile picture" v-model="picture"></v-file-input>
           <v-text-field label="Birthday" readonly></v-text-field>
           <v-date-picker v-model="birthday"></v-date-picker>
-          <v-checkbox label="Agree to terms & conditions"></v-checkbox>-->
-          <v-btn type="submit" color="primary">Submit</v-btn>
-        </v-form>
-      </v-col>
-    </v-row>
-  </v-container>
+            <v-checkbox label="Agree to terms & conditions"></v-checkbox>-->
+            <v-btn type="submit" color="primary">Submit</v-btn>
+          </v-form>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-card>
 </template>
 
 <script>

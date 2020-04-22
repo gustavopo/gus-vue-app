@@ -6,23 +6,25 @@
       <v-toolbar-title>Page title</v-toolbar-title>
 
       <v-spacer></v-spacer>
-      <router-link to="/todo">
+      <router-link to="/todo" v-if="auth">
         <v-btn color="indigo">Todo's</v-btn>
       </router-link>
 
       <router-link to="/test">
         <v-btn color="indigo">Test Page</v-btn>
       </router-link>
-
-      <router-link to="/userDetails">
+      <v-spacer></v-spacer>
+      <router-link to="/userDetails" v-if="auth">
         <v-btn color="indigo">Perfil</v-btn>
       </router-link>
 
-      <router-link to="/signin">
+      <router-link to="/signin" v-if="!auth">
         <v-btn color="indigo">Login</v-btn>
       </router-link>
 
-      <router-link to="/signup">
+      <v-btn v-if="auth" @click="onLogout" color="indigo">Logout</v-btn>
+
+      <router-link to="/signup" v-if="!auth">
         <v-btn color="indigo">Signup</v-btn>
       </router-link>
 
@@ -57,6 +59,14 @@ export default {
     showDrawer() {
       EventBus.showDrawer()
       //EventBus.toggleNavigation()
+    },
+    onLogout() {
+      this.$store.dispatch('logout')
+    }
+  },
+  computed: {
+    auth() {
+      return this.$store.getters.isAuthenticated
     }
   }
 }
