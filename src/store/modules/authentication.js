@@ -31,13 +31,17 @@ const actions = {
         returnSecureToken: true
       })
       .then(result => {
-        console.log(result)
         commit('authUser', {
           token: result.data.idToken,
           userId: result.data.localId
         })
 
         dispatch('storeUser', authData)
+        //TODO: Just store user and redirect to login page (DONT LOGIN)
+
+        setTimeout(() => {
+          router.replace('/userDetails')
+        }, 1000)
       })
       .catch(err => {
         console.log(err)
@@ -54,7 +58,6 @@ const actions = {
         }
       )
       .then(result => {
-        //console.log(result)
         commit('authUser', {
           token: result.data.idToken,
           userId: result.data.localId

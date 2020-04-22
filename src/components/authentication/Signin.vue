@@ -46,11 +46,7 @@ export default {
     onSubmit() {
       const formData = {
         email: this.email,
-        //age: this.age,
         password: this.password
-        //country: this.country,
-        //hobbies: this.hobbyInputs.map(hobby => hobby.value),
-        //terms: this.terms
       }
 
       this.$store.dispatch('login', formData)

@@ -4,8 +4,9 @@
       <v-row>
         <v-col>
           <h1>Signup</h1>
-          <v-form @submit.prevent="onSubmit">
-            <v-text-field label="Email" type="email" v-model="email" id="email"></v-text-field>
+          <v-form @submit.prevent="onSubmit" align-center>
+            <v-text-field name="name" label="Name" id="name" v-model="name"></v-text-field>
+            <v-text-field name="email" label="Email" type="email" v-model="email" id="email"></v-text-field>
             <v-text-field
               v-model="password"
               :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
@@ -33,10 +34,10 @@
             :items="browsersList"
             v-model="browsers"
           ></v-autocomplete>
-          <v-file-input label="Attach profile picture" v-model="picture"></v-file-input>
-          <v-text-field label="Birthday" readonly></v-text-field>
-          <v-date-picker v-model="birthday"></v-date-picker>
-            <v-checkbox label="Agree to terms & conditions"></v-checkbox>-->
+            <v-file-input label="Attach profile picture" v-model="picture"></v-file-input>-->
+            <v-text-field label="Birthday" readonly></v-text-field>
+            <v-date-picker v-model="birthday"></v-date-picker>
+            <v-checkbox label="Agree to terms & conditions" v-model="terms" required></v-checkbox>
             <v-btn type="submit" color="primary">Submit</v-btn>
           </v-form>
         </v-col>
@@ -57,22 +58,27 @@ export default {
       },*/
 
       //fields
+      name: '',
       email: '',
       password: '',
       confirmPassword: '',
       browsers: '',
       picture: '',
       birthday: '',
-      browsersList: ['Chrome', 'Firefox', 'Safari', 'Edge']
+      browsersList: ['Chrome', 'Firefox', 'Safari', 'Edge'],
+      terms: ''
     }
   },
   methods: {
     onSubmit() {
       const formData = {
+        name: this.name,
         email: this.email,
-        //age: this.age,
+        age: this.age,
         password: this.password,
-        confirmPassword: this.confirmPassword
+        confirmPassword: this.confirmPassword,
+        birthday: this.birthday,
+        terms: this.terms
         //country: this.country,
         //hobbies: this.hobbyInputs.map(hobby => hobby.value),
         //terms: this.terms
