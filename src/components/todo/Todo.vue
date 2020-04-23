@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <h1>Todo's List</h1>
+        <h1>Todo's List for User with Email: {{ userEmail }}</h1>
         <v-spacer></v-spacer>
         <!-- Input todo -->
         <v-container>
@@ -92,7 +92,13 @@ export default {
   computed: {
     todos() {
       return this.$store.getters.todos
+    },
+    userEmail() {
+      return !this.$store.getters.user ? false : this.$store.getters.user.email
     }
+  },
+  created() {
+    this.$store.dispatch('fetchUser')
   }
 }
 </script>

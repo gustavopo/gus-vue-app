@@ -5,7 +5,9 @@ import Home from '../views/Home.vue'
 import Todo from '../components/todo/Todo.vue'
 import UserDetails from '../components/user/UserDetails.vue'
 import TestComponent from '../components/test/TestComponent.vue'
-import SignupComponent from '../components/signup/SignupComponent.vue'
+import SignupComponent from '../components/authentication/SignupComponent.vue'
+import SigninComponent from '../components/authentication/Signin.vue'
+import store from '../store'
 
 Vue.use(VueRouter)
 
@@ -27,9 +29,28 @@ const routes = [
   {
     path: '/todo',
     name: 'Todo',
-    component: Todo
+    component: Todo,
+    beforeEnter: (to, from, next) => {
+      console.log(store.state.idToken)
+      if (store.state.authentication.idToken) {
+        //Validate if User Authenticated
+        next()
+      } else {
+        //If !Authenticated -> Redirect '/'
+        next('/')
+      }
+    }
   },
   {
+    beforeEnter: (to, from, next) => {
+      if (store.state.authentication.idToken) {
+        //Validate if User Authenticated
+        next()
+      } else {
+        //If !Authenticated -> Redirect '/'
+        next('/')
+      }
+    },
     path: '/UserDetails',
     name: 'UserDetails',
     component: UserDetails
@@ -43,6 +64,11 @@ const routes = [
     path: '/signup',
     name: 'signup',
     component: SignupComponent
+  },
+  {
+    path: '/signin',
+    name: 'signin',
+    component: SigninComponent
   },
   {
     path: '/redirecttest',

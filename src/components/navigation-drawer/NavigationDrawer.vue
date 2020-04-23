@@ -6,7 +6,7 @@
       </v-list-item-avatar>
 
       <v-list-item-content>
-        <v-list-item-title>John Leider</v-list-item-title>
+        <v-list-item-title>{{ userName }}</v-list-item-title>
       </v-list-item-content>
     </v-list-item>
 
@@ -52,6 +52,7 @@ export default {
       }
       console.log(this.drawer)
     })
+    this.$store.dispatch('fetchUser')
   },
   methods: {
     toggleNavigation(e) {
@@ -59,6 +60,12 @@ export default {
       if (this.drawer == true) {
         EventBus.toggleNavigation()
       }
+    }
+  },
+  computed: {
+    userName() {
+      console.log(this.$store.getters.user)
+      return !this.$store.getters.user ? false : this.$store.getters.user.name
     }
   }
 }

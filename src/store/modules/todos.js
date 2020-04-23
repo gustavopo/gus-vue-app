@@ -19,12 +19,18 @@ const mutations = {
   },
   COMPLETE_TODO(state, todo) {
     //Find specific todo
+    console.log('todo')
+    console.log(todo)
     const realTodo = state.todos.find(element => element.id == todo.id)
+    console.log('searching todo...')
+    console.log(realTodo)
     if (realTodo != undefined) {
       realTodo.completed = !realTodo.completed
     } else {
       alert('Cannot find Todo!')
     }
+
+    console.log(realTodo)
   }
 }
 
