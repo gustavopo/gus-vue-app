@@ -5,7 +5,12 @@
         <v-col>
           <h1>Login</h1>
           <v-form @submit.prevent="onSubmit">
-            <v-text-field id="email" label="Email" type="email" v-model="email"></v-text-field>
+            <v-text-field
+              id="email"
+              label="Email"
+              type="email"
+              v-model="email"
+            ></v-text-field>
             <v-text-field
               v-model="password"
               :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
@@ -17,7 +22,12 @@
               @click:append="show1 = !show1"
             ></v-text-field>
 
-            <v-btn type="submit" color="primary">Submit</v-btn>
+            <router-link to="/signup" v-if="!auth">
+              <v-btn color="primary">Signup</v-btn>
+            </router-link>
+            <v-btn style="float:right" type="submit" color="primary"
+              >Submit</v-btn
+            >
           </v-form>
         </v-col>
       </v-row>
@@ -50,6 +60,11 @@ export default {
       }
 
       this.$store.dispatch('login', formData)
+    }
+  },
+  computed: {
+    auth() {
+      return this.$store.getters.isAuthenticated
     }
   }
 }

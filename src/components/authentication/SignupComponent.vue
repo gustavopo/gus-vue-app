@@ -5,8 +5,19 @@
         <v-col>
           <h1>Signup</h1>
           <v-form @submit.prevent="onSubmit" align-center>
-            <v-text-field name="name" label="Name" id="name" v-model="name"></v-text-field>
-            <v-text-field name="email" label="Email" type="email" v-model="email" id="email"></v-text-field>
+            <v-text-field
+              name="name"
+              label="Name"
+              id="name"
+              v-model="name"
+            ></v-text-field>
+            <v-text-field
+              name="email"
+              label="Email"
+              type="email"
+              v-model="email"
+              id="email"
+            ></v-text-field>
             <v-text-field
               v-model="password"
               :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
@@ -35,9 +46,22 @@
             v-model="browsers"
           ></v-autocomplete>
             <v-file-input label="Attach profile picture" v-model="picture"></v-file-input>-->
-            <v-text-field label="Birthday" readonly></v-text-field>
+            <v-file-input
+              :rules="rules"
+              accept="image/png, image/jpeg, image/bmp"
+              placeholder="Pick an avatar"
+              prepend-icon="mdi-camera"
+              label="Avatar"
+              v-model="avatar"
+            ></v-file-input>
+
+            <v-text-field label="Age" v-model="age"></v-text-field>
             <v-date-picker v-model="birthday"></v-date-picker>
-            <v-checkbox label="Agree to terms & conditions" v-model="terms" required></v-checkbox>
+            <v-checkbox
+              label="Agree to terms & conditions"
+              v-model="terms"
+              required
+            ></v-checkbox>
             <v-btn type="submit" color="primary">Submit</v-btn>
           </v-form>
         </v-col>
@@ -62,8 +86,10 @@ export default {
       email: '',
       password: '',
       confirmPassword: '',
+      avatar: '',
       browsers: '',
       picture: '',
+      age: '',
       birthday: '',
       browsersList: ['Chrome', 'Firefox', 'Safari', 'Edge'],
       terms: ''
@@ -78,7 +104,8 @@ export default {
         password: this.password,
         confirmPassword: this.confirmPassword,
         birthday: this.birthday,
-        terms: this.terms
+        terms: this.terms,
+        avatar: this.avatar
         //country: this.country,
         //hobbies: this.hobbyInputs.map(hobby => hobby.value),
         //terms: this.terms
