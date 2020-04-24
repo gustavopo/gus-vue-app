@@ -44,7 +44,7 @@
                       <v-checkbox
                         :input-value="item.completed"
                         color="deep-purple accent-4"
-                        @click="toggleItem(item)"
+                        @click.stop="toggleItem(item)"
                       ></v-checkbox>
                     </v-list-item-action>
                   </template>
