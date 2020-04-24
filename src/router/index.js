@@ -71,9 +71,10 @@ const routes = [
     component: SigninComponent
   },
   {
-    path: '/redirecttest',
+    //Catch all routes and redirect to home
+    path: '*',
     redirect: {
-      name: 'HomeComponent'
+      name: 'Home'
     }
   }
 ]
