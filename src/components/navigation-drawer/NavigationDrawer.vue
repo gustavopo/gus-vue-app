@@ -22,6 +22,14 @@
           <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
+
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title>
+            <router-link to="/todo" v-if="auth" class="no-style">Todo's</router-link>
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -66,7 +74,16 @@ export default {
     userName() {
       console.log(this.$store.getters.user)
       return !this.$store.getters.user ? false : this.$store.getters.user.name
+    },
+    auth() {
+      return this.$store.getters.isAuthenticated
     }
   }
 }
 </script>
+<style scoped>
+.no-style {
+  text-decoration: none;
+  color: inherit;
+}
+</style>

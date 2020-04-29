@@ -3,7 +3,9 @@
     <v-app-bar color="dark" dense dark>
       <v-app-bar-nav-icon v-if="auth" @click.stop="showDrawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>GusVue - All in One</v-toolbar-title>
+      <router-link to="/home" class="no-style">
+        <v-toolbar-title>GusVue - All in One</v-toolbar-title>
+      </router-link>
 
       <v-spacer></v-spacer>
       <router-link to="/todo" v-if="auth">
@@ -13,6 +15,11 @@
       <router-link to="/test">
         <v-btn color="indigo">Test Page</v-btn>
       </router-link>
+
+      <router-link to="/chat" v-if="auth">
+        <v-btn color="indigo">Chat</v-btn>
+      </router-link>
+
       <v-spacer></v-spacer>
       <router-link to="/userDetails" v-if="auth">
         <v-btn color="indigo">Perfil</v-btn>
@@ -71,3 +78,9 @@ export default {
   }
 }
 </script>
+<style scoped>
+.no-style {
+  text-decoration: none;
+  color: inherit;
+}
+</style>
